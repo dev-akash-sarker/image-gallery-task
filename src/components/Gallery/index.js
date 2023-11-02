@@ -25,9 +25,17 @@ export default function Gallery() {
     }
   };
 
-  const me = document.getElementsByClassName(".item");
-  console.log(me.dragging);
-
+  // const container = document.getElementsById("sortable-container");
+  // const sortable = new Sortable(container, {
+  //   onStart: (event) => {
+  //     if (event.from.children[0] === event.item) {
+  //       event.item.style.transform = "scale(1.2)";
+  //     }
+  //   },
+  //   onEnd: (event) => {
+  //     event.from.children[0].style.transform = "";
+  //   },
+  // });
   return (
     <>
       <div className="galleryWrapper">
@@ -53,11 +61,12 @@ export default function Gallery() {
           <ReactSortable
             list={state}
             setList={setState}
-            animation={250}
+            animation={200}
             easing={"cubic-bezier(1, 0, 0, 1)"}
-            clone={false}
-            // preventOnFilter={true}
-            filter={".non-draggable"}
+            clone={true}
+            preventOnFilter={true}
+            filter={".non-draggable .effects"}
+            id="sortable-container"
             className="sortablecustom grid"
           >
             {state.map((item) => (
