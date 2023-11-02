@@ -3,30 +3,18 @@ import { ImCheckboxChecked } from "react-icons/im";
 import { BsCardImage } from "react-icons/bs";
 import "./style.css";
 import { myData } from "../data/myimage";
-// const logo = "./images/logo.svg";
+import { ReactSortable } from "react-sortablejs";
+
 export default function Gallery() {
+  const [state, setState] = useState(myData);
   const [selectedbox, isSelectedbox] = useState("");
 
-  // const checkEffect = {
-  //   position: "absolute",
-  //   width: "100%",
-  //   height: "100%",
-  //   background: dragm ? "transparent" : "rgba(255, 255, 255, 0.5)",
-  //   zIndex: "9999",
-  //   top: "0",
-  //   left: "0",
-  // };
-
-  // const nulls = {};
   const checkboxes = document.querySelectorAll(".checkbox");
   const selectedBoxCount = () => {
     const selectCheckBox = document.querySelectorAll(".checkbox:checked");
     isSelectedbox(selectCheckBox.length);
   };
 
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", selectedBoxCount);
-  });
   const myitem = document.querySelectorAll(".item");
 
   const handleDelete = () => {
@@ -36,6 +24,9 @@ export default function Gallery() {
       }
     }
   };
+
+  const me = document.getElementsByClassName(".item");
+  console.log(me.dragging);
 
   return (
     <>
@@ -55,30 +46,47 @@ export default function Gallery() {
             <button onClick={handleDelete}>Delete files</button>
           )}
         </div>
-        <hr />
-        <div className="grid" id="grid">
-          {myData.map((item, i) => (
-            <>
-              <div className="item myitem" draggable="true" key={i}>
-                <img src={item.link} alt="" />
+        <div>
+          <hr />
+        </div>
+        <div>
+          <ReactSortable
+            list={state}
+            setList={setState}
+            animation={250}
+            easing={"cubic-bezier(1, 0, 0, 1)"}
+            clone={false}
+            // preventOnFilter={true}
+            filter={".non-draggable"}
+            className="sortablecustom grid"
+          >
+            {state.map((item) => (
+              <>
+                <div className="item myitem" id={item.id}>
+                  <img src={item.link} alt="" />
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id="check"
+                    onChange={selectedBoxCount}
+                  />
 
-                <input type="checkbox" className="checkbox" id="check" />
-
-                <div className="effects"></div>
-              </div>
-            </>
-          ))}
-
-          <div className="item" draggable="false">
-            <button>
-              <div>
-                <div>
-                  <BsCardImage fontSize={30} />
+                  <div className="effects"></div>
                 </div>
-                <h4>Add Images</h4>
-              </div>
-            </button>
-          </div>
+              </>
+            ))}
+
+            <div className="item  non-draggable" draggable="false">
+              <button>
+                <div>
+                  <div>
+                    <BsCardImage fontSize={30} />
+                  </div>
+                  <h4>Add Images</h4>
+                </div>
+              </button>
+            </div>
+          </ReactSortable>
         </div>
       </div>
     </>
