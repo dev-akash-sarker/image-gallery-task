@@ -6,18 +6,24 @@ import { myData } from "../data/myimage";
 import { ReactSortable } from "react-sortablejs";
 
 export default function Gallery() {
+  // state use for load our image link url and id
   const [state, setState] = useState(myData);
+  // selectedbox use for how many box are selected
   const [selectedbox, isSelectedbox] = useState("");
 
+  // checkboxes variable is to select query for checkbox
   const checkboxes = document.querySelectorAll(".checkbox");
+  // this is an actual arrow function for how many box are selected
   const selectedBoxCount = () => {
     const selectCheckBox = document.querySelectorAll(".checkbox:checked");
     isSelectedbox(selectCheckBox.length);
   };
 
+  // myitem variable used for select an query
   const myitem = document.querySelectorAll(".item");
-
+  // this function used to delete selected boxes as image
   const handleDelete = () => {
+    // this is a for loop to check how many box are selected
     for (let i = 0; i < checkboxes.length; i++) {
       if (checkboxes[i].checked) {
         myitem[i].remove();
@@ -25,17 +31,6 @@ export default function Gallery() {
     }
   };
 
-  // const container = document.getElementsById("sortable-container");
-  // const sortable = new Sortable(container, {
-  //   onStart: (event) => {
-  //     if (event.from.children[0] === event.item) {
-  //       event.item.style.transform = "scale(1.2)";
-  //     }
-  //   },
-  //   onEnd: (event) => {
-  //     event.from.children[0].style.transform = "";
-  //   },
-  // });
   return (
     <>
       <div className="galleryWrapper">
@@ -50,6 +45,7 @@ export default function Gallery() {
               "Gallery"
             )}
           </h4>
+          {/* if selected box have greater then 0 then the handleDelete will trigger */}
           {selectedbox > 0 && (
             <button onClick={handleDelete}>Delete files</button>
           )}
@@ -58,16 +54,16 @@ export default function Gallery() {
           <hr />
         </div>
         <div>
+          {/* ReactSortable is a sortable component */}
+          {/* filter will ignore .non-draggable class when disable dragging */}
           <ReactSortable
             list={state}
             setList={setState}
-            animation={200}
+            animation={100}
             easing={"cubic-bezier(1, 0, 0, 1)"}
-            clone={true}
             preventOnFilter={true}
-            filter={".non-draggable .effects"}
-            id="sortable-container"
-            className="sortablecustom grid"
+            filter={".non-draggable"}
+            className="grid"
           >
             {state.map((item) => (
               <>
@@ -86,7 +82,7 @@ export default function Gallery() {
             ))}
 
             <div className="item  non-draggable" draggable="false">
-              <button>
+              <button className="mybtnadd">
                 <div>
                   <div>
                     <BsCardImage fontSize={30} />
