@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 /* gallery backgroud css */
 .galleryWrapper {
   background: #fff;
@@ -97,6 +100,10 @@
   display: none;
 }
 
+.sortable-chosen .effects {
+  background-color: transparent;
+}
+
 /* when checkbox as checked */
 
 .checkbox:checked {
@@ -113,6 +120,12 @@
   z-index: 9999;
   top: 0;
   left: 0;
+}
+
+#nine,
+#eight,
+#seven {
+  object-fit: contain;
 }
 
 /* when checkbox as checked but checkbox class will be trigger */
@@ -179,4 +192,228 @@
 .non-draggable button {
   position: relative;
   cursor: pointer;
+}
+.item:last-child {
+  position: relative;
+}
+
+.item:last-child button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 555;
+}
+
+.delete {
+  color: red;
+}
+/* Extra extra large screen */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  /* grid layout with grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 35px;
+    padding: 35px 50px;
+    align-items: stretch;
+    box-sizing: border-box;
+  }
+
+  .item {
+    position: relative;
+    display: block;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  /* make the first child will be bigger tile */
+  .item:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+    height: 340px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+}
+/* Extra large screen */
+@media (min-width: 992px) and (max-width: 1199px) {
+  /* grid layout with grid */
+  .container {
+    width: 992px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20;
+    /* padding: 35px 50px; */
+    /* align-items: stretch; */
+    /* box-sizing: border-box; */
+  }
+
+  .item {
+    position: relative;
+    display: block;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  /* make the first child will be bigger tile */
+  .item:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+
+    /* width: 300px; */
+    height: 335px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+}
+/* Large screen */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* grid layout with grid */
+  .container {
+    width: 768px;
+    margin: 0 auto;
+  }
+
+  .gallery_header {
+    padding: 40px 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10;
+    /* padding: 35px 50px; */
+    /* align-items: stretch; */
+    /* box-sizing: border-box; */
+  }
+
+  .item {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  /* make the first child will be bigger tile */
+  .item:first-child {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+
+    /* width: 300px; */
+    height: 435px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+}
+/* Medium screen */
+@media (min-width: 576px) and (max-width: 767px) {
+  /* grid layout with grid */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .gallery_header {
+    padding: 40px 5px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 10px;
+    grid-gap: 10;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  /* make the first child will be bigger tile */
+  .item:first-child {
+    grid-column-start: 1;
+    grid-column-end: -2;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+
+    /* width: 300px; */
+    height: 435px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+}
+/* Small screen */
+@media (max-width: 576px) {
+  /* grid layout with grid */
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .gallery_header {
+    padding: 40px 5px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 10px;
+    grid-gap: 10;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .item {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 7px;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  /* make the first child will be bigger tile */
+  .item:first-child {
+    grid-column-start: 1;
+    grid-column-end: -1;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    width: 100%;
+    /* width: 300px; */
+    height: 100%;
+    border: 2px solid rgb(214, 207, 207);
+  }
+
+  .non-draggable .mybtnadd {
+    width: 100%;
+    height: 100%;
+  }
+
+  .item:last-child {
+    min-height: 200px;
+    max-height: 576px;
+  }
 }

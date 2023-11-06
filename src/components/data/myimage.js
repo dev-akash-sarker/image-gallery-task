@@ -21,15 +21,15 @@ export const myData = [
     link: "./assets/images/gallery/image-6.webp",
   },
   {
-    id: 7,
+    id: "seven",
     link: "./assets/images/gallery/image-7.webp",
   },
   {
-    id: 8,
+    id: "eight",
     link: "./assets/images/gallery/image-8.webp",
   },
   {
-    id: 9,
+    id: "nine",
     link: "./assets/images/gallery/image-9.webp",
   },
   {
